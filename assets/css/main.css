@@ -169,6 +169,21 @@ footer{
 	font-family: "Josefin Sans";
 }
 
+.block-title{
+	font-size: 20;
+	font-family: "Josefin Sans"
+}
+
+.list-item-title{
+	font-size: 18;
+	font-family: "Josefin Sans"
+}
+
+.list-item-text{
+	font-size: 16;
+	font-family: "Josefin Sans"
+}
+
 .fa-heartbeat{
 	    color: #bb9e7d;
 }
@@ -312,4 +327,8 @@ footer{
 }
 .show{
 	display: block;
+}
+
+.list-group li{
+  border: 0 none;  
 }

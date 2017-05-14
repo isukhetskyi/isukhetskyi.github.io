@@ -5,7 +5,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "F:\\Cloud\\GitHub\\OpenSource\\CV\\index.html",
+            "url": "F:\\Cloud\\GitHub\\OpenSource\\CV\\isukhetskyi.github.io\\index.html",
             "webRoot": "${workspaceRoot}"
         },
         {
