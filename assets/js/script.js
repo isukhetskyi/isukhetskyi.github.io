@@ -29,11 +29,4 @@ $( document ).ready(function() {
                     $('#index_left').addClass('animated slideInLeft');
                     $('#index_right').addClass('animated slideInRight');
                 });
-                
-                $('[id^=detail-]').hide();
-                $('.toggle').click(function() {
-                    $input = $( this );
-                    $target = $('#'+$input.attr('data-toggle'));
-                    $target.slideToggle();
-                });
 		});

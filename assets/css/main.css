@@ -332,3 +332,7 @@ footer{
 .list-group li{
   border: 0 none;  
 }
+
+.under-development-warning-text{
+	color: #ff1a1a;
+}
