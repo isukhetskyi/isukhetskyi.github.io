@@ -1,252 +1,287 @@
-<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-        <title>Ivan Sukhetskyi : Home</title>
-        <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/4f6a4b08efdad6bb29f9cc801f5c07e263b39907/devicon.min.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Ivan Sukhetskyi | CV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700,700i|Josefin+Sans:700" rel="stylesheet">
-        <link href="assets/css/main.css" rel="stylesheet">
-        <link rel="icon" href="assets/images/logo.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        
-    </head>
+    <!-- styles -->
+    <link rel="stylesheet" href="css/material.indigo-green.min.css" />
 
-    <body>
-        <div id="index">                                           <!-- Index starts here -->
-            <div class="container main">
-                <div class="row home">
-                    <div id = "index_left" class="col-md-6 left">
-                        <img class="img-responsive img-rabbit" src="assets/images/home.jpg">
-                    </div>
-                    <div id = "index_right" class="col-md-6 text-center right">
-                        <div class="logo">
-                            <img src="assets/images/logo.png">
-                            <h4>Peaceful developoer</h4>
-                        </div>
-                        <p class="home-description">
-                            Hi, I am Ivan Sukhetskyi, .Net Software Engineer from Ivano-Frankivsk, Ukraine. I am passionate about software development, 
-                            paying attention to details and I never stop learning.
-                        </p>
-                        <div class="btn-group-vertical custom_btn animated slideinright">
-                            <div id="about" class="btn btn-rabbit">About</div>
-                            <div id="work" class="btn btn-rabbit">Work</div>
-                            <div id="contact" class="btn btn-rabbit">Contact</div>
-                        </div>      
-                        <div class="social">
-                            <a href="https://www.facebook.com/profile.php?id=100003103427098" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="https://github.com/isukhetskyi" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-                            <a href="https://www.linkedin.com/in/ivan-sukhetskyi-3a5277b4/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            <a href="https://stackoverflow.com/users/story/8746405" target="_blank"><i class="fa fa-stack-overflow" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
+    <!-- custom styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/ladda-themeless.min.css" />
 
-                
+    <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="css/icon.css">
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_p7HdUGS0j66pkDXqFynam");
+        })();
+    </script>
+
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Ivan Sukhetskyi</span>
             </div>
-        </div>                                                      <!-- index ends here -->
-
-        <div id="about_scroll" class="pages ">                      <!-- about strats here  -->
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6 left" id="about_left">
-                        <img class="img-responsive img-rabbit" src="assets/images/about.png">
-                    </div>
-
-                    <div class="col-md-6 right" id="about_right">
-                        <a href="#index" class="btn btn-rabbit back"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to home </a>
-                        <div id="watermark">
-                            <h2 class="page-title" text-center>About</h2>
-                            <div class="marker">a</div>
-                        </div>
-                        </p>
-                        <p class="subtitle">A results-driven, Software Engineer who can think “out of the box”. Strong in design and integration, have a good problem solving skills. 
-                            Have good knowledge in C#, ASP.Net, T-SQL with database analysis and design. 
-                            Skilled in developing highly performance, scalable and enterprice level applications.</p> 
-                         <br/>
-                         
-        
-            <h3 class="block-title">Skills</h3>
-        
-        <ul class="list-group borderless">
-            <li class="list-group-item borderless">
-                <div id="detail-1">
-                    <div class="container">
-                        <!--<div class="fluid-row">-->
-                    <div class="row" >
-                            <div class="col-md-12 list-item-text">
-                                C#
-                            </div>
-                    </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-12 list-item-text">
-                                    ASP.Net MVC 5
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-12 list-item-text">
-                                    ASP.Net Core
-                                </div>
-                            </div>
-                            <br/>
-                        <div class="row">
-                            <div class="col-md-12 list-item-text">
-                                Transact SQL
-                            </div>
-                        </div>    
-                            <br/>
-                        <div class="row">
-                            <div class="col-md-12 list-item-text">
-                                Task Parallel Library
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 list-item-text">
-                                Azure Functions
-                            </div>
-                        </div>
-                            <br/>
-                        <div class="row">
-                            <div class="col-md-12 list-item-text">
-                                Entity Framework
-                            </div>
-                        </div>
-                            <br/>
-                        <div class="row">
-                            <div class="col-md-12 list-item-text">
-                                Upper intermidiate level of English
-                            </div>
-                        </div>
-
-                    <!--</div>-->
-                </div>
-            </li>
-        </ul>
-	<!--</div>-->
-                    </div>
-                </div>
-            </div>            
-        </div>                                                                <!-- About ends here -->
-
-
-        
-        <div id="work_scroll" class="pages">                                  <!-- Work starts here -->
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6" id="work_left">
-                        <div id="owl-demo" class="owl-carousel owl-theme">
-                            <div class="item"><img class="img-responsive img-rabbit" src="assets/images/work.jpg"></div>                            
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" id="work_right">
-                        <a href="#index" class="btn btn-rabbit back"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home </a>
-                        <div id="watermark">
-                            <h2 class="page-title" text-center>Work</h2>
-                            <div class="marker">w</div>
-                        </div>
-                        <p class='subtitle'>NetLS Software Development &mdash; April 2016 - Now
-                        </p>
-                        <h4><b>Responsibilities:</b></h4>
-                        <p class="info">
-                            <ul style="font-size: 18px">
-                                <li>
-                                        Back-end Development in .NET with front-end in Razor. 
-                                </li>
-                                <li>
-                                        Participation in design and architectural sessions. 
-                                </li>
-                                <li>
-                                        Implementing best practives and performing code-reviews.
-                                </li>
-                                <li>
-                                        Work with the remote team located in different time zones.
-                                </li>
-                            </ul>
-                        </p>
-                        <br/>
-                        <h4><b>Technologies:</b></h4>
-                        <p class="info">
-                            <ul style="font-size: 18px">
-                                <li>
-                                    .Net 4.7,  MS SQL Server 2017, Microsoft Azure SQL, Azure Functions, ASP.Net MVC 5, EntityFramework 6, MVC Razor, Html Agility Pack, jQuery, Bootstrap3)
-                                </li>
-                            </ul>
-                        </p>
-                        <br/>
-                        <h4><b>Pet projects:</b></h4>
-                        <p class="info">
-                            <ul style="font-size: 18px">
-                                <li>
-                                    <a href="https://github.com/isukhetskyi/bifrost">Bifrost - simple SPA dashboard</a>
-                                </li>
-                            </ul>
-                        </p>
-                    </div>
-                </div>
-            </div>    
-        </div>                                                                 <!-- Work ends here  -->
-
-
-        <div id="contact_scroll" class="pages">                             <!-- Contact starts here -->
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6 left" id="contact_left">
-                        <img class="img-responsive img-rabbit" src="assets/images/contact.jpg">
-                    </div>
-
-                    <div class="col-md-6 right" id="contact_right">
-                        <a href="#index" class="btn btn-rabbit back"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home </a>
-                        <div id="watermark">
-                            <h2 class="page-title" text-center>Contact</h2>
-                            <div class="marker">c</div>
-                        </div>
-                        <p class='subtitle'>If you are intrested in hiring me, drop me a line.                            
-                        </p>
-                        <p class="under-development-warning-text">Currently under development, sorry for inconvinience</p>
-                        <!-- form -->
-                        <form class="form_edit"> 
-                            <div class="form-group">
-                                <input type="name" class="form-control" id="exampleInputName" placeholder="Name">
-                            </div>
-
-                            <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-
-                            <div class="form-group">
-                            <textarea class="form-control" rows="5" placeholder="Message"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-rabbit submit">Send Message</button>
-                        </form>
-                    </div>
-                </div>
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="#scroll-tab-about" class="mdl-layout__tab is-active">About</a>
+                <a href="#scroll-tab-resume" class="mdl-layout__tab">Resume</a>
+                <a href="#scroll-tab-contact" class="mdl-layout__tab">Contact</a>
             </div>
-       
-            <footer class="text-center">
-                <div class="container bottom">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <p>Made with <i class="fa fa-coffee" aria-hidden="true"></i> by <a href="https://github.com/isukhetskyi">Peaceful Dev</a></p>
+        </header>
+        <main class="mdl-layout__content">
+
+            <!-- About Section -->
+            <section class="mdl-layout__tab-panel is-active" id="scroll-tab-about">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                        <div class="container mdl-shadow--4dp">
+
+
+                            <!-- my github img url -->
+                            <img src="https://avatars0.githubusercontent.com/u/24879591?s=460&v=4" alt="Amine Smahi">
+
+                            <h2>Ivan Sukhetskyi | .Net Developer</h2>
+
+                            <p>
+                                Hi, I am Ivan Sukhetskyi, .Net Software Engineer from Ivano-Frankivsk, Ukraine. I am passionate about software development, paying attention to details and I never stop learning.
+                            </p>
+
+                        </div>
+                        <!-- /container -->
+                    </div>
+                    <!-- /mdl-grid -->
+                </div>
+                <!-- /page-content -->
+            </section>
+
+            <!-- Resume Section -->
+            <section class="mdl-layout__tab-panel" id="scroll-tab-resume">
+                <div class="page-content" id="about">
+                    <div class="mdl-grid">
+
+
+                        <div id="res-nav" class="contact-container">
+                            <ul>
+                                <!-- <li><a class="smooth" href="#contact">Contact</a></li> -->
+                                <li><a class="smooth" href="#about">About</a></li>
+                                <li><a class="smooth" href="#work">Work Experience</a></li>
+                                <li><a class="smooth" href="#apps">Applications</a></li>
+                                <li><a class="smooth" href="#edu">Education</a></li>
+                                <li><a class="smooth" href="#skills">Skills</a></li>
+                            </ul>
+                        </div>
+                        <!-- /res-nav -->
+
+                        <!-- resume body -->
+                        <div class="container mdl-shadow--4dp res-container">
+
+                            <!-- top resume section -->
+                            <section id="about">
+                                <header>
+                                    <h3>Resume</h3>
+                                </header>
+                                <div>
+                                    <p>
+                                        A results-driven, Software Engineer who can think “out of the box”. Strong in design and integration, have a good problem solving skills. Have good knowledge in C#, ASP.Net, T-SQL with database analysis and design. Skilled in developing highly performance,
+                                        scalable and enterprice level applications.
+                                    </p>
+                                </div>
+                            </section>
+
+                            <!-- my work experience -->
+                            <section id="work">
+                                <header>
+                                    <h3>Work Experience</h3>
+                                </header>
+                                <div>
+                                    <h4>.Net Developer <a href="http://netls.com.ua/" target="_blank">NetLS Software development</a></h4>
+                                    <h5>March 2016 - now</h5>
+                                    <ul>
+                                        <li>I converted an ionic mobile app to a web application with angular.js and angular-material.</li>
+
+                                        <li>I created a feature which uploaded large amounts of data by parsing an excel file.</a>
+                                        </li>
+                                        <li>I had to re-write functions that were previously handled by cordova plugins. </li>
+                                        <li><em>* reference contact info upon request</em></li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <!-- my apps section -->
+                            <section class="applications" id="apps">
+                                <header>
+                                    <h3>Applications</h3>
+                                </header>
+                                <div class="mdl-grid padding-cell">
+
+                                    <!-- apps left side of inline display -->
+                                    <div class="section__text mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
+                                        <li><a href="https://github.com/isukhetskyi/bifrost" target="_blank">Bifrost</a> - simple dashboard</li>
+                                    </div>
+
+                                    <!-- apps right side of inline display -->
+                                    <div class="section__text mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
+                                    </div>
+
+                                </div>
+                                <!-- /padding-cell -->
+                            </section>
+
+                            <!-- my education -->
+                            <section id="edu">
+                                <header>
+                                    <h3>Education</h3>
+                                </header>
+                                <div>
+                                    <h4>Master's degree of Computer systems and networks | <a href="http://nung.edu.ua/en">IFNTUOG</a> Ivano-Frankivsk</h4>
+                                    <h5>2013-2017</h5>
+                                </div>
+                            </section>
+
+                            <!-- my skills -->
+                            <section id="skills">
+                                <header class="skills-title">
+                                    <h3>Skills</h3>
+                                </header>
+                                <div class="mdl-grid skills-zone">
+
+                                    <!-- skills left side of inline display -->
+                                    <div class="section__text mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--6-col-phone">
+                                        <h4>Back End</h4>
+                                        <li><strong>C#</strong> - 2 years experience</li>
+                                        <li><strong>ASP.Net MVC</strong> - 2 years experience </li>
+                                        <li><strong>SQL Server</strong> - 2 years experience</li>
+                                        <li><strong>Azure Functions</strong> - 0.5 year experience</li>
+                                    </div>
+
+                                    <!-- skills right side of inline display -->
+                                    <div class="section__text mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--6-col-phone">
+                                        <h4>Front End</h4>
+                                        <li><strong>HTML5/CSS3</strong> - 0.5 year experience</li>
+                                        <li><strong>Javascript</strong> - 0.5 year experience</li>
+                                        <li><strong>Bootstrap3</strong> - 0.5 years experience</li>
+                                        <li><strong>ReactJS</strong> - 0.5 years experience</li>
+                                        <li><strong>jQuery</strong> - 0.5 years experience</li>
+                                    </div>
+
+                                </div>
+                                <!-- /skills-zone -->
+                            </section>
+                            <!-- my education -->
+
+                            <!-- <div id="print-tooltip" class="material-icons pdf-print">
+                                <a href="#" target="_blank">print</a>
+                            </div>
+                            <div class="mdl-tooltip mdl-tooltip--large" for="print-tooltip">
+                                Download as Document
+                            </div> -->
+                        </div>
+                        <!-- /container -->
+                        <!-- /resume body -->
+
+                    </div>
+                    <!-- mdl-grid outer -->
+                </div>
+                <!-- page-content -->
+
+            </section>
+            <!-- /Resume Section -->
+
+            <!-- Contact Section -->
+            <section class="mdl-layout__tab-panel" id="scroll-tab-contact">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                        <div class="container mdl-shadow--4dp">
+                            <!-- <header>
+										<h5>How can I help you with your platform?</h5>
+					</header> -->
+                            <form onsubmit="return validateMyForm();" action="#" method="post" id='_form_1029' accept-charset='utf-8' enctype='multipart/form-data'>
+
+                                <div class="mdl-grid">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                                        <input class="mdl-textfield__input" type="text" pattern="[A-Z,a-z_]*" id="name" name="name" maxlength="100" />
+                                        <label class="mdl-textfield__label" for="username">Name *</label>
+                                        <span class="mdl-textfield__error">Only alphabet and no spaces, please!</span>
+                                    </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                                        <label for="input_email" class="mdl-textfield__label">Email *</label>
+                                        <!-- <input type="email" class="mdl-textfield__input" id="email" name="email" /> -->
+                                        <input type="email" title="The domain portion of the email address is invalid (the portion after the @)." pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+                                            class="mdl-textfield__input" id="email" name="email">
+                                        <span class="mdl-textfield__error">Not a valid email address!</span>
+                                    </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                                        <textarea type="text" class="mdl-textfield__input" id="message" name="message" rows="5" maxlength="5000"></textarea>
+                                        <label for="" class="mdl-textfield__label" for="textfield-1">
+        				Message *
+      				</label>
+                                    </div>
+                                    <!-- egghead field start-->
+                                    <div id="egghead">
+                                        <label>Keep this field blank</label>
+                                        <input type="text" name="egghead" id="egghead" />
+                                    </div>
+                                    <!-- egghead field end -->
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored ladda-button" data-style="expand-right" type="submit" data-color="purple">
+  						<span class="ladda-label">Submit</span>
+						</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+
+            </section>
+
+            <div class="mdl-layout-spacer"></div>
+
+            <footer class="mdl-mini-footer">
+
+                <div class="mdl-mini-footer--left-section">
+
+                </div>
+
+                <!-- my social networks -->
+                <div class="mdl-mini-footer--right-section">
+
+                    <a href="https://www.facebook.com/profile.php?id=100003103427098" target="_blank"><button class="mdl-mini-footer--social-btn social-btn social-btn__facebook">
+              <span class="visuallyhidden">Facebook</span></button></a>
+
+                    <a href="https://github.com/isukhetskyi" target="_blank"><button class="mdl-mini-footer--social-btn social-btn social-btn__github"><span class="visuallyhidden">Git Hub</span></button></a>
+
+                    <a href="https://www.linkedin.com/in/ivan-sukhetskyi-3a5277b4/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn social-btn__linkedin">
+              <span class="visuallyhidden">Linkedin</span></button></a>
+                </div>
+
             </footer>
-            
-        </div>                                                              <!-- Contact ends here -->
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/script.js"></script>
-    </body>
+        </main>
+
+        <!-- fixed email button -->
+        <a href="mailto:" target="_blank" id="email-me" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect"><i class="material-icons">email</i></a>
+
+
+
+    </div>
+    <!-- /mdl-layout -->
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="js/spin.min.js"></script>
+    <script src="js/ladda.min.js"></script>
+    <script>
+        Ladda.bind('.ladda-button', {
+            timeout: 2000
+        });
+    </script>
+    <script src="js/main.js"></script>
+
+</body>
+
 </html>
