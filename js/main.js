@@ -23,23 +23,17 @@ $(document).ready(function() {
                 from_name: $("#name").val() + " - " + $("#email").val(),
                 message_html: $('#message').val()
             });
+
+            setTimeout(function() {
+                $("#div1").fadeOut(1000);
+            }, 2000);
+            setTimeout(function() {
+                $(location).attr('href', 'index.html');
+            }, 3000);
         }
 
     });
 
-    //$("button[type='submit']").ladda( 'bind', { timeout: 2000 } );
-
-    var url1 = window.location.href === "index7df7.html?success=1";
-    var url2 = window.location.href === "index639d.html?success=-1";
-    // check if url matches then do fadeOut on success message and redirect to home
-    if (url1 || url2) {
-        setTimeout(function() {
-            $("#div1").fadeOut(3000);
-        }, 5000);
-        setTimeout(function() {
-            $(location).attr('href', 'index.html');
-        }, 8000);
-    }
 
     var selector = 'a.smooth';
 
