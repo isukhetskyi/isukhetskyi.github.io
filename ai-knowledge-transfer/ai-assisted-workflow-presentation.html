@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My AI-Assisted Dev Setup - Skills, Rules &amp; Workflow</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" />
+  <style>
+    :root {
+      --accent: #4fc3f7;
+      --accent2: #b39ddb;
+      --warn: #ffb74d;
+      --subtle: #90a4ae;
+      --code-bg: #1e272e;
+      --good: #81c784;
+      --bad: #e57373;
+    }
+
+    .reveal {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 28px;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 {
+      color: var(--accent);
+      font-size: 1.2em;
+      text-transform: none;
+      border-bottom: 1px solid rgba(79, 195, 247, 0.3);
+      padding-bottom: 0.15em;
+      margin-bottom: 0.4em;
+    }
+
+    .reveal h3 {
+      color: var(--warn);
+      text-transform: none;
+      font-size: 0.9em;
+      margin: 0.4em 0 0.2em;
+    }
+
+    .reveal .slides section { text-align: left; }
+
+    .reveal ul { margin-left: 1em; line-height: 1.5; }
+    .reveal ul li { margin-bottom: 0.15em; }
+    .reveal ul li::marker { color: var(--accent); }
+    .reveal ol { margin-left: 1em; line-height: 1.5; }
+
+    code {
+      background: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.85em;
+      color: var(--accent);
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(79, 195, 247, 0.15);
+      border: 1px solid rgba(79, 195, 247, 0.4);
+      border-radius: 4px;
+      padding: 0.1em 0.6em;
+      font-size: 0.7em;
+      color: var(--accent);
+      vertical-align: middle;
+      margin-left: 0.4em;
+    }
+    .tag.warn { background: rgba(255, 183, 77, 0.15); border-color: rgba(255, 183, 77, 0.4); color: var(--warn); }
+    .tag.purple { background: rgba(179, 157, 219, 0.15); border-color: rgba(179, 157, 219, 0.4); color: var(--accent2); }
+    .tag.good { background: rgba(129, 199, 132, 0.15); border-color: rgba(129, 199, 132, 0.4); color: var(--good); }
+
+    .callout {
+      background: rgba(79, 195, 247, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 0.35em 0.8em;
+      border-radius: 0 6px 6px 0;
+      margin: 0.5em 0;
+      font-size: 0.82em;
+    }
+    .callout.warn { background: rgba(255, 183, 77, 0.08); border-left-color: var(--warn); }
+    .callout.purple { background: rgba(179, 157, 219, 0.08); border-left-color: var(--accent2); }
+    .callout.good { background: rgba(129, 199, 132, 0.08); border-left-color: var(--good); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; align-items: start; }
+
+    .pipeline { display: flex; align-items: center; gap: 0.6em; flex-wrap: wrap; margin: 0.6em 0; }
+
+    .pipeline-step {
+      background: rgba(79, 195, 247, 0.15);
+      border: 1px solid rgba(79, 195, 247, 0.4);
+      border-radius: 6px;
+      padding: 0.5em 0.9em;
+      font-size: 0.72em;
+      text-align: center;
+    }
+    .pipeline-step.store { background: rgba(179, 157, 219, 0.15); border-color: rgba(179, 157, 219, 0.5); }
+    .pipeline-step.ext { background: rgba(144, 164, 174, 0.15); border-color: rgba(144, 164, 174, 0.5); }
+    .pipeline-step.good { background: rgba(129, 199, 132, 0.15); border-color: rgba(129, 199, 132, 0.5); }
+    .pipeline-step.warn { background: rgba(255, 183, 77, 0.15); border-color: rgba(255, 183, 77, 0.5); }
+
+    .pipeline-arrow { color: var(--accent); font-size: 1.2em; }
+
+    .flow-label {
+      font-size: 0.62em;
+      color: var(--warn);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      min-width: 3.4em;
+    }
+
+    .title-slide h1 { font-size: 1.8em; color: white; }
+    .title-slide .subtitle { color: var(--subtle); font-size: 0.85em; margin-top: 0.5em; }
+    .title-slide .meta { margin-top: 2em; font-size: 0.7em; color: var(--subtle); }
+
+    .reveal .fragment { transition: none; }
+
+    .slide-note { font-size: 0.65em; color: var(--subtle); margin-top: 1.2em; font-style: italic; }
+
+    .code-sample {
+      background: var(--code-bg);
+      border-radius: 6px;
+      padding: 0.6em 0.9em;
+      font-size: 0.58em;
+      line-height: 1.5;
+      margin-top: 0.5em;
+      font-family: 'Consolas', 'Cascadia Code', monospace;
+    }
+    .code-sample pre {
+      margin: 0;
+      white-space: pre;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      background: none;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      text-align: left;
+      width: 100%;
+    }
+    .code-sample .k { color: #c792ea; }
+    .code-sample .t { color: #4fc3f7; }
+    .code-sample .s { color: #c3e88d; }
+    .code-sample .m { color: #ffcb6b; }
+    .code-sample .c { color: #697a86; }
+    .code-sample .n { color: #f78c6c; }
+    .code-sample .p { color: #b0bec5; }
+
+    .stat-row { display: flex; gap: 1.2em; margin: 0.8em 0; }
+    .stat-card {
+      flex: 1;
+      background: rgba(79, 195, 247, 0.08);
+      border: 1px solid rgba(79, 195, 247, 0.25);
+      border-radius: 8px;
+      padding: 0.6em 0.8em;
+      text-align: center;
+    }
+    .stat-card .num { font-size: 1.5em; font-weight: 700; color: var(--accent); }
+    .stat-card .lbl { font-size: 0.6em; color: var(--subtle); margin-top: 0.2em; }
+
+    .routing-table { width: 100%; border-collapse: collapse; font-size: 0.68em; margin-top: 0.6em; }
+    .routing-table th {
+      color: var(--accent);
+      border-bottom: 1px solid rgba(79, 195, 247, 0.4);
+      padding: 0.3em 0.6em;
+      text-align: left;
+      font-weight: 600;
+    }
+    .routing-table td { border-bottom: 1px solid rgba(144, 164, 174, 0.2); padding: 0.3em 0.6em; vertical-align: top; }
+
+    .demo-label { font-size: 0.72em; color: var(--warn); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.1em; }
+    .demo-title { font-size: 1.9em; font-weight: 700; color: white; margin: 0.15em 0 0.7em; }
+    .demo-steps {
+      text-align: left;
+      font-size: 0.78em;
+      color: var(--subtle);
+      list-style: decimal;
+      margin-left: 2em;
+      display: inline-block;
+    }
+    .demo-steps li { margin-bottom: 0.5em; }
+    .demo-steps code { font-size: 0.92em; }
+
+    .section-divider { text-align: center; padding-top: 2em; }
+    .section-divider .kicker { font-size: 0.75em; color: var(--accent2); letter-spacing: 0.15em; text-transform: uppercase; }
+    .section-divider h1 { font-size: 2em; color: white; margin-top: 0.3em; }
+    .section-divider .credit { color: var(--subtle); font-size: 0.8em; margin-top: 1.2em; }
+
+    .step-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #0b1620;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 1.5em;
+      height: 1.5em;
+      line-height: 1.5em;
+      text-align: center;
+      font-size: 0.8em;
+      margin-right: 0.4em;
+    }
+
+    .layer-card {
+      background: rgba(79, 195, 247, 0.06);
+      border: 1px solid rgba(79, 195, 247, 0.25);
+      border-radius: 8px;
+      padding: 0.5em 0.8em;
+      margin-bottom: 0.5em;
+      font-size: 0.78em;
+    }
+    .layer-card strong { color: var(--accent); }
+    .layer-card.purple { background: rgba(179, 157, 219, 0.06); border-color: rgba(179, 157, 219, 0.3); }
+    .layer-card.purple strong { color: var(--accent2); }
+    .layer-card.warn { background: rgba(255, 183, 77, 0.06); border-color: rgba(255, 183, 77, 0.3); }
+    .layer-card.warn strong { color: var(--warn); }
+    .layer-card.good { background: rgba(129, 199, 132, 0.06); border-color: rgba(129, 199, 132, 0.3); }
+    .layer-card.good strong { color: var(--good); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: Title -->
+<!-- ============================================================ -->
+<section class="title-slide" style="text-align:center; padding-top: 1em;">
+  <div style="font-size:0.8em; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5em;">Knowledge Sharing &nbsp;-&nbsp; Agentic Engineering</div>
+  <h1>My AI-Assisted Dev Setup<br/><span style="color:var(--accent)">Skills, Rules &amp; a Repeatable Workflow</span></h1>
+  <div class="subtitle">How I take a feature from "fuzzy idea" to a clean commit with an AI agent - on my BioMetric pet project</div>
+  <div class="meta">Ivan Sukhetskyi &nbsp;·&nbsp; October 2026</div>
+  <aside class="notes">Quick framing: this is my pet project, not production - which is exactly why I can experiment freely. The goal today is not "use my setup", it is to show the building blocks so you can assemble your own. I'm demoing in Antigravity, but nothing here is tied to one IDE - it's all plain files. Ask the room: who already uses agent rules or skills? Who has written their own?</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: Agenda -->
+<!-- ============================================================ -->
+<section>
+  <h2>What You'll See</h2>
+  <div class="two-col">
+    <div>
+      <h3>Part 1 - The setup</h3>
+      <ul>
+        <li>The pet project: BioMetric</li>
+        <li>Four layers of agent context</li>
+        <li>Rules, glossary &amp; ADRs</li>
+        <li>Skills - what they are, my toolbox</li>
+        <li>Guardrails: hooks &amp; quality gates</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Part 2 - The workflow</h3>
+      <ul>
+        <li><span class="step-badge">1</span><code>grilling</code> + <code>domain-modeling</code></li>
+        <li><span class="step-badge">2</span><code>plan-feature</code></li>
+        <li><span class="step-badge">3</span><code>implement-feature</code></li>
+        <li><span class="step-badge">4</span><code>review-changes</code></li>
+        <li><span class="step-badge">5</span><code>generate-commit-message</code></li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:1em;">
+    Real artifacts from <strong>F-067</strong> (user-configurable low-stock reminder time) are used as the running example. Live demo at the end.
+  </div>
+  <aside class="notes">Roughly 40% setup, 40% workflow walk-through, 20% live demo and questions. If time is tight, skip the skill-anatomy slide - it is a nice-to-have.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- PART 1 DIVIDER -->
+<!-- ============================================================ -->
+<section class="section-divider" data-background-color="#100e14">
+  <div class="kicker">Part One</div>
+  <h1>The Setup</h1>
+  <p class="credit">Everything the agent knows lives in files - not in my head, not in the chat</p>
+  <aside class="notes">Core idea for part 1: if the agent has to be told something twice, it belongs in a file. Everything on the next slides is just files in the repo - versioned, reviewable, and shared across tools.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3: The Project -->
+<!-- ============================================================ -->
+<section>
+  <h2>The Pet Project: BioMetric</h2>
+  <ul>
+    <li>A <strong>sovereign health analytics platform</strong> - biomarker trends, automated lab-report (PDF) ingestion, medication inventory &amp; budget forecasting</li>
+    <li><strong>.NET 10</strong> Web API + <strong>Blazor WebAssembly</strong> client with MudBlazor 9 + Cosmos DB (in-memory fallback)</li>
+    <li>Vertical-slice features, multi-tenant by design (<code>ITenantRepository&lt;T&gt;</code>)</li>
+    <li>Built <strong>with an agent in the loop</strong> - so the setup has to carry real weight</li>
+  </ul>
+  <div class="stat-row">
+    <div class="stat-card"><div class="num">17</div><div class="lbl">curated agent skills in the repo</div></div>
+    <div class="stat-card"><div class="num">17</div><div class="lbl">ADRs recorded</div></div>
+    <div class="stat-card"><div class="num">~100</div><div class="lbl">Knowledge Base files (specs, WBS, design)</div></div>
+    <div class="stat-card"><div class="num">41</div><div class="lbl">test files, warnings = errors</div></div>
+  </div>
+  <aside class="notes">Why this matters for the talk: a small but non-trivial codebase with real architecture rules (tenant isolation, vertical slices, Cosmos LINQ limits). Those are exactly the things an agent gets wrong without guidance. Numbers: skills = folders under .agents/skills, ADRs = docs/architecture/decisions/adrs, KB = files under docs/kb.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4: Four layers -->
+<!-- ============================================================ -->
+<section>
+  <h2>Four Layers of Agent Context</h2>
+  <div class="layer-card"><strong>1 - Rules</strong> &nbsp;<code>AGENTS.md</code> · <code>GEMINI.md</code> · <code>.agents/rules/*.md</code><br/>How we write code here: architecture, C# idioms, Blazor, testing</div>
+  <div class="layer-card purple"><strong>2 - Domain memory</strong> &nbsp;<code>CONTEXT.md</code> · <code>docs/adr/</code> · <code>docs/kb/</code> (incl. <code>plans/</code>) · <code>docs/wbs/</code><br/>What the system <em>means</em> and why it is built this way</div>
+  <div class="layer-card warn"><strong>3 - Skills</strong> &nbsp;<code>.agents/skills/&lt;name&gt;/SKILL.md</code><br/>Reusable procedures the agent runs on demand (<code>/grilling</code>, <code>/plan-feature</code>, <code>/implement-feature</code>, <code>/review-changes</code> ...)</div>
+  <div class="layer-card good"><strong>4 - Guardrails</strong> &nbsp;<code>hooks.json</code> · autonomy policy · <code>dotnet build/format/test</code> gate · CI<br/>What the agent may do - and what must pass before a commit</div>
+  <div class="callout" style="margin-top:0.6em;">
+    Rules say <strong>how</strong> · Domain memory says <strong>what &amp; why</strong> · Skills say <strong>in what order</strong> · Guardrails say <strong>how far</strong>
+  </div>
+  <aside class="notes">This is the mental model for the whole talk. Most people stop at layer 1 (a rules file). The jump in quality came from adding layer 2 (so the agent uses my vocabulary and respects past decisions) and layer 3 (so multi-step work is repeatable instead of re-prompted).</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: Repo Map -->
+<!-- ============================================================ -->
+<section>
+  <h2>Repo Map</h2>
+  <div class="two-col">
+    <div class="code-sample" style="margin-top:0;"><pre><span class="t">biometric/</span>
+<span class="p">├─ </span><span class="m">AGENTS.md</span>          <span class="c">← main agent guidelines</span>
+<span class="p">├─ </span><span class="m">GEMINI.md</span>          <span class="c">← points to AGENTS.md</span>
+<span class="p">├─ </span><span class="m">CONTEXT.md</span>         <span class="c">← domain glossary</span>
+<span class="p">├─ </span><span class="m">ARCHITECTURE.md</span>
+<span class="p">├─ </span><span class="t">.agents/</span>
+<span class="p">│  ├─ </span>rules/            <span class="c">← dotnet-development, testing</span>
+<span class="p">│  ├─ </span>skills/           <span class="c">← 17 skills</span>
+<span class="p">│  ├─ </span>scripts/          <span class="c">← command-filter.ps1</span>
+<span class="p">│  └─ </span>hooks.json
+<span class="p">├─ </span><span class="t">docs/</span>
+<span class="p">│  ├─ </span>adr/ · architecture/decisions/
+<span class="p">│  ├─ </span>kb/ (specs, plans/) · wbs/ · traceability.json
+<span class="p">│  └─ </span>agents/          <span class="c">← issue tracker, labels, domain</span>
+<span class="p">├─ </span><span class="t">src/</span> Shared · Api · Client
+<span class="p">├─ </span><span class="t">tests/</span> BioMetric.Tests
+<span class="p">└─ </span><span class="t">.github/workflows/</span> build-and-test · deploy-dev</pre></div>
+    <div>
+      <ul style="font-size:0.88em;">
+        <li><strong>One source of truth</strong> - <code>GEMINI.md</code> (picked up by Antigravity) is just a pointer to <code>AGENTS.md</code>, so every tool reads the same rules</li>
+        <li><code>.agents/</code> is tool-neutral: rules, skills, and hooks sit together</li>
+        <li><code>docs/agents/*</code> tells skills <em>how this repo works</em>: GitHub issues via <code>gh</code>, triage labels, single-context domain docs</li>
+        <li>Everything is plain Markdown / JSON - <strong>diffable and reviewable</strong> like code</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">Point out AGENTS.md section 6 and 8: section 6 lists the repo's custom commands, section 8 is where skills discover the issue tracker and domain-doc conventions. Skills like to-spec or triage read docs/agents/issue-tracker.md rather than hard-coding GitHub.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: Rules -->
+<!-- ============================================================ -->
+<section>
+  <h2>Layer 1 - Rules That Encode Our Decisions</h2>
+  <div class="two-col">
+    <div>
+      <h3>dotnet-development.md</h3>
+      <ul style="font-size:0.82em;">
+        <li>Layering: <code>Shared</code> stays UI/ASP.NET-free</li>
+        <li>Controllers inject <code>ITenantRepository&lt;T&gt;</code> - never <code>ICosmosRepository&lt;T&gt;</code></li>
+        <li>No <code>.Result</code> / <code>.Wait()</code>, always <code>CancellationToken</code></li>
+        <li>Blazor: no <code>[Parameter]</code> mutation, <code>@key</code> in loops, dispose subscriptions</li>
+        <li>Cosmos LINQ: no <code>.CountBy()</code> in queries - materialize first</li>
+      </ul>
+    </div>
+    <div>
+      <h3>testing.md</h3>
+      <ul style="font-size:0.82em;">
+        <li><code>Method_State_ExpectedResult</code> naming + AAA</li>
+        <li>Fakes over mocks: <code>InMemoryRepository&lt;T&gt;</code> + <code>MockCurrentUserService</code></li>
+        <li>Every controller gets a <strong>cross-user isolation</strong> test</li>
+        <li>Async tests return <code>Task</code>, never <code>async void</code></li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout warn" style="margin-top:0.6em;">
+    <strong>Clean commit gate:</strong> <code>dotnet build --no-incremental</code> (0 warnings) → <code>dotnet format --verify-no-changes</code> → <code>dotnet test</code>
+  </div>
+  <div class="callout" style="margin-top:0.3em;">
+    Good rules are <strong>specific and falsifiable</strong> - "use <code>ITenantRepository</code>" beats "follow good architecture".
+  </div>
+  <div class="callout purple" style="margin-top:0.3em;">
+    Rules are <strong>scoped by file glob</strong>: <code>dotnet-development.md</code> for <code>*.cs / *.razor / *.csproj ...</code>, <code>testing.md</code> for <code>tests/**/*.cs</code> - loaded only when relevant files are in play.
+  </div>
+  <aside class="notes">Every one of these rules exists because the agent (or I) got it wrong once. The tenant-repository rule is the most valuable: it turns a security property - no cross-user data leaks - into a mechanical check that a reviewer, or a skill, can verify from the diff. The anti-pattern examples in the rules files (BAD / GOOD blocks) help a lot more than prose.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7: Domain memory -->
+<!-- ============================================================ -->
+<section>
+  <h2>Layer 2 - Domain Memory</h2>
+  <div class="two-col">
+    <div>
+      <ul style="font-size:0.88em;">
+        <li><code>CONTEXT.md</code> - a <strong>glossary only</strong>: canonical terms and the words to <em>avoid</em></li>
+        <li><code>docs/adr/</code> - decisions that are <strong>hard to reverse, surprising, and a real trade-off</strong></li>
+        <li><code>docs/kb/</code> + <code>docs/wbs/</code> - feature specs (<code>F-xxx</code>), acceptance criteria, business rules, risks</li>
+        <li><code>docs/kb/plans/F-xxx-plan.md</code> - the approved implementation plan, written by <code>plan-feature</code></li>
+        <li><code>docs/traceability.json</code> - links features ↔ entities ↔ rules</li>
+      </ul>
+      <div class="callout purple">
+        Skills read this <strong>before</strong> exploring code - so output uses my vocabulary and flags ADR conflicts.
+      </div>
+    </div>
+    <div class="code-sample" style="margin-top:0;"><pre><span class="c"># CONTEXT.md</span>
+
+<span class="m">**Low-Stock Alert**</span>:
+<span class="p">A proactive notification triggered when the
+remaining supply of a medication drops below
+a predetermined day threshold.</span>
+<span class="c">_Avoid_: Refill reminder, shortage alarm</span>
+
+<span class="c"># docs/adr/</span>
+0016-adaptive-mobile-architecture
+0017-multi-tiered-price-synchronization...
+0018-user-configurable-daily-low-stock-
+     reminder-timing   <span class="c">← F-067</span></pre></div>
+  </div>
+  <aside class="notes">The _Avoid_ lines are the trick: they stop the agent drifting into synonyms, which keeps code, tests, issues and docs in one vocabulary. Low-Stock Alert is the glossary term F-067 builds on - the feature changes when that alert is delivered, not what it is. ADR-0018 (F-067) references ADR-0016 and ADR-0008 as context - a good example of the agent being told about past decisions instead of re-litigating them. The domain-modeling skill only offers an ADR when all three conditions hold (hard to reverse, surprising, real trade-off), which keeps the ADR folder small and meaningful.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: Skills toolbox -->
+<!-- ============================================================ -->
+<section>
+  <h2>Layer 3 - The Skills Toolbox</h2>
+  <table class="routing-table">
+    <tr><th style="width:24%">Phase</th><th>Skills</th></tr>
+    <tr><td>Think &amp; design</td><td><code>grilling</code> · <code>domain-modeling</code> · <code>research</code> · <code>prototype</code> · <code>codebase-design</code></td></tr>
+    <tr><td>Plan &amp; slice work</td><td><code>plan-feature</code> <span class="tag warn">custom</span> · <code>to-spec</code> · <code>to-tickets</code> · <code>triage</code></td></tr>
+    <tr><td>Build</td><td><code>implement-feature</code> <span class="tag warn">custom</span> · <code>tdd</code> · <code>diagnosing-bugs</code></td></tr>
+    <tr><td>Review &amp; ship</td><td><code>review-changes</code> <span class="tag warn">custom</span> · <code>generate-commit-message</code> <span class="tag warn">custom</span> · <code>resolving-merge-conflicts</code> · <code>handoff</code></td></tr>
+    <tr><td>Meta</td><td><code>writing-for-agents</code> · <code>wizard</code></td></tr>
+  </table>
+  <div class="callout" style="margin-top:0.7em;">
+    <strong>Curated, not collected:</strong> a small set of focused skills - four of them custom to this repo.
+  </div>
+  <div class="callout purple" style="margin-top:0.3em;">
+    Every skill's name + description sits in the agent's context all the time - <strong>each extra skill is a recurring token cost</strong> and a chance to pick the wrong one.
+  </div>
+  <aside class="notes">Don't read the table. Three takeaways: (1) skills cover the whole lifecycle, not only coding; (2) the four orange ones - plan-feature, implement-feature, review-changes, generate-commit-message - are specific to this repo: they reference F-xxx feature IDs, the KB and AGENTS.md checklists; (3) I keep the set small on purpose: fewer, sharper skills means the agent chooses correctly more often and less context is burned on descriptions. Every skill has a third-person "Use when..." description and an allowed-tools fence.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: Skill anatomy -->
+<!-- ============================================================ -->
+<section>
+  <h2>Anatomy of a Skill</h2>
+  <div class="two-col">
+    <div>
+      <div class="code-sample" style="margin-top:0;"><pre><span class="t">review-changes/</span>
+<span class="p">├─ </span><span class="m">SKILL.md</span>              <span class="c">← the procedure (short)</span>
+<span class="p">├─ </span><span class="t">references/</span>
+<span class="p">│  ├─ </span>review-checklist.md  <span class="c">← C#, Blazor, tests</span>
+<span class="p">│  └─ </span>code-smells.md       <span class="c">← Fowler baseline</span>
+<span class="p">└─ </span><span class="t">scripts/</span>
+<span class="p">   └─ </span>verify-gate.ps1      <span class="c">← build+format+test</span>
+
+<span class="c"># SKILL.md frontmatter</span>
+<span class="k">---</span>
+<span class="t">name</span>: <span class="s">review-changes</span>
+<span class="t">description</span>: <span class="s">Reviews uncommitted git
+  changes against AGENTS.md ... Use when
+  the user asks to review changes ...</span>
+<span class="t">allowed-tools</span>: <span class="s">Bash(powershell *),
+  Bash(git status *), Bash(git diff *),
+  Read, Grep, Glob</span>
+<span class="k">---</span></pre></div>
+    </div>
+    <div>
+      <ul style="font-size:0.82em;">
+        <li>A skill is a <strong>folder with a <code>SKILL.md</code></strong> - frontmatter + instructions</li>
+        <li><code>description</code> ("<em>Use when...</em>") is what makes the agent pick it</li>
+        <li><code>allowed-tools</code> <strong>fences</strong> what it can run - review is read-only git + one script</li>
+        <li><code>disable-model-invocation</code> → only runs when <em>I</em> call it (used by <code>generate-commit-message</code>, <code>to-spec</code>, <code>triage</code> ...)</li>
+        <li><strong>3 levels:</strong> metadata always loaded → <code>SKILL.md</code> on invoke → <code>references/</code> and <code>scripts/</code> only when needed</li>
+        <li>Deterministic work goes in a <strong>script</strong>; the agent reads a 10-line summary, not 500 lines of build log</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout purple" style="margin-top:0.6em;">
+    Rules load <strong>when matching files are touched</strong>. Skills are <strong>loaded on demand</strong>, in layers - a long checklist costs nothing until a review actually needs it.
+  </div>
+  <aside class="notes">Take review-changes as the example: SKILL.md is just the procedure, the checklist and the Fowler code-smell baseline live in references/ (read on demand), and the build/format/test run lives in verify-gate.ps1 which prints a short markdown summary - far cheaper for the agent's context than raw dotnet output. allowed-tools pre-approves exactly what the skill needs (powershell script, git status/diff) and nothing else. Note disable-model-invocation: the agent will not decide on its own to draft a commit message or publish tickets - only I trigger those.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: Guardrails -->
+<!-- ============================================================ -->
+<section>
+  <h2>Layer 4 - Guardrails</h2>
+  <div class="two-col">
+    <div>
+      <h3>Command allowlist hook</h3>
+      <ul style="font-size:0.82em;">
+        <li><code>hooks.json</code> → <code>PreToolUse</code> on shell commands → <code>command-filter.ps1</code></li>
+        <li><span class="check" style="color:var(--good)">allow</span>: <code>dotnet build|test|restore</code>, <code>git status|diff|log</code></li>
+        <li><span style="color:var(--warn)">ask</span>: everything else</li>
+      </ul>
+      <h3>Autonomy policy <span class="tag">AGENTS.md §7</span></h3>
+      <ul style="font-size:0.82em;">
+        <li>Free: build, test, read, edit in <code>src/ tests/ .agents/</code></li>
+        <li>Confirm: <code>reset --hard</code>, <code>push --force</code>, cloud provisioning</li>
+        <li>Never leave the workspace root</li>
+      </ul>
+      <h3>Per-skill tool fences</h3>
+      <ul style="font-size:0.82em;">
+        <li><code>allowed-tools</code> in every <code>SKILL.md</code> - e.g. commit skill: <code>git status|diff</code> + <code>Read</code> only</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Quality gates</h3>
+      <ul style="font-size:0.82em;">
+        <li><code>TreatWarningsAsErrors</code> + analyzers (Sonar, Meziantou, Roslynator)</li>
+        <li><code>.editorconfig</code> enforced via <code>dotnet format</code></li>
+        <li><code>verify-gate.ps1</code>: build + format + test in <strong>one command</strong>, short summary out</li>
+        <li>CI: <code>build-and-test.yml</code> on push / PR to <code>main</code></li>
+        <li>Build and review skills end with a <strong>verification stage</strong> - not "looks good"</li>
+      </ul>
+      <div class="callout good" style="margin-top:0.8em;">
+        Safe, boring commands run without prompts → I only get interrupted for decisions that matter.
+      </div>
+    </div>
+  </div>
+  <aside class="notes">The hook is deliberately tiny: a regex allowlist. Anything not matched returns "ask", so the failure mode is "I get a prompt", never "something ran silently". Autonomy is the productivity lever - without it the agent asks permission 40 times per feature and you stop paying attention to the prompts that matter.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- PART 2 DIVIDER -->
+<!-- ============================================================ -->
+<section class="section-divider" data-background-color="#100e14">
+  <div class="kicker">Part Two</div>
+  <h1>The Workflow</h1>
+  <p class="credit">From a fuzzy idea to a clean commit in five steps</p>
+  <aside class="notes">Now we put the four layers to work. I'll walk through each step, then show the artifacts F-067 already has, then do the rest live.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11: Workflow overview -->
+<!-- ============================================================ -->
+<section>
+  <h2>The Workflow at a Glance</h2>
+  <div class="pipeline" style="justify-content:center;">
+    <div class="pipeline-step"><strong>1 Grill</strong><br/><span style="color:var(--subtle)"><code>/grilling</code> + <code>domain-modeling</code></span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step store"><strong>2 Plan</strong><br/><span style="color:var(--subtle)"><code>/plan-feature</code></span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step warn"><strong>3 Implement</strong><br/><span style="color:var(--subtle)"><code>/implement-feature</code></span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step good"><strong>4 Review</strong><br/><span style="color:var(--subtle)"><code>/review-changes</code></span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step ext"><strong>5 Commit</strong><br/><span style="color:var(--subtle)"><code>/generate-commit-message</code></span></div>
+  </div>
+  <table class="routing-table">
+    <tr><th>Step</th><th>Who decides?</th><th>Artifact</th></tr>
+    <tr><td>1 Grill</td><td>Me - agent interviews, I answer</td><td>Shared understanding, <code>CONTEXT.md</code> terms, ADR (if warranted)</td></tr>
+    <tr><td>2 Plan</td><td>Agent drafts, I approve</td><td><code>docs/kb/plans/F-xxx-plan.md</code>: acceptance criteria, layer impact, phased tasks</td></tr>
+    <tr><td>3 Implement</td><td>Agent - executes the approved plan</td><td>Code in Shared → Api → Client, tests, plan checked off, KB status updated</td></tr>
+    <tr><td>4 Review</td><td>Agent reviews, I judge</td><td>Report: blockers / recommendations / verdict</td></tr>
+    <tr><td>5 Commit</td><td>Me - I run the commit</td><td>Conventional Commits message</td></tr>
+  </table>
+  <div class="callout" style="margin-top:0.5em;">
+    Humans own the <strong>decisions</strong> (steps 1, 2, 5). The agent owns the <strong>execution</strong> (3, 4) - and each step's output is the next step's input.
+  </div>
+  <aside class="notes">The important design choice is where the human sits. Steps 1 and 2 are cheap to change - this is where I spend my attention. Once the plan file is approved, implementation is mostly mechanical because the rules, the spec and the plan already constrain it - the plan is the hand-off contract between steps 2 and 3.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12: Step 1 grill -->
+<!-- ============================================================ -->
+<section>
+  <h2><span class="step-badge">1</span>Research the Task - <code>grilling</code> + <code>domain-modeling</code></h2>
+  <div class="two-col">
+    <div>
+      <h3><code>grilling</code> - the interview</h3>
+      <ul style="font-size:0.82em;">
+        <li>Maps the task as a <strong>design tree</strong>; asks the whole "frontier" per round, each question with a <strong>recommended answer</strong></li>
+        <li>Facts (code, files) it looks up itself via read-only tools - <strong>decisions</strong> it asks me</li>
+        <li>Doesn't act until I confirm we share an understanding</li>
+      </ul>
+    </div>
+    <div>
+      <h3><code>domain-modeling</code> - the docs</h3>
+      <ul style="font-size:0.82em;">
+        <li>Challenges fuzzy terms against the <code>CONTEXT.md</code> glossary; stress-tests with edge-case scenarios</li>
+        <li>Writes glossary terms <strong>inline</strong> as they crystallise; offers an ADR only if it's hard to reverse, surprising, and a real trade-off</li>
+        <li>Cross-checks my claims against the code</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout warn" style="margin-top:0.4em;">
+    I invoke <code>/grilling</code>; the docs skill does its part whenever terms or decisions come up.
+  </div>
+  <div class="code-sample"><pre><span class="c">// illustrative round - based on the F-067 reminder-time decision (ADR-0018)</span>
+<span class="m">❓ Q1 - Delivery model</span>: The worker sleeps 24h and fires at 10:00. If the machine is off
+   at that moment, the alert is lost for the day. Keep a single timer, or tick periodically?
+<span class="s">➡️ Periodic 15-minute aligned ticks with same-day catch-up - a 09:00 alert still fires at 11:30.</span>
+
+<span class="m">❓ Q2 - Time zone</span>: Per-user time zones, or one anchor for everyone?
+<span class="s">➡️ Anchor to Europe/Kyiv (matches our lab / pharmacy ecosystem); revisit if users go abroad.</span>
+
+<span class="m">❓ Q3 - Existing profiles</span>: Stored preferences have no reminder time yet. Migrate them?
+<span class="s">➡️ No migration - null/empty evaluates as "10:00", so F-065 behaviour is unchanged.</span></pre></div>
+  <aside class="notes">Two skills work together here: the interview is /grilling and the glossary/ADR discipline lives in domain-modeling. The grilling skill is restricted to Read, Grep and Glob - it can investigate but cannot edit anything; the writing of CONTEXT.md and ADRs belongs to domain-modeling, which has Write/Edit. Show the real skill text if asked: "Interview the user relentlessly until you reach a shared understanding... The session is done when the frontier is empty." The big win is that it doesn't act until I confirm we're aligned. The Q&A above is illustrative of the style (I'm not quoting a transcript), but the decisions are the real ones recorded in ADR-0018 for F-067: periodic 15-minute ticks with same-day catch-up, Europe/Kyiv anchor, and a "10:00" default for backward compatibility.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 13: Step 2 Plan -->
+<!-- ============================================================ -->
+<section>
+  <h2><span class="step-badge">2</span>Plan - <code>plan-feature</code> <span class="tag warn">custom</span></h2>
+  <div class="pipeline">
+    <div class="pipeline-step">1 Discover<br/><span style="color:var(--subtle)">index · WBS · ADRs</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step">2 Inspect seams<br/><span style="color:var(--subtle)">real code</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step">3 Align<br/><span style="color:var(--subtle)">rules check</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step store">4 Author plan<br/><span style="color:var(--subtle)">phased tasks</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step good">5 Save &amp; present<br/><span style="color:var(--subtle)">docs/kb/plans/</span></div>
+  </div>
+  <div class="two-col">
+    <ul style="font-size:0.8em;">
+      <li><code>/plan-feature F-067</code> reads the spec: feature index, WBS acceptance criteria, <code>FEATURE_PRIORITIES.md</code>, <code>traceability.json</code>, linked ADRs</li>
+      <li>Then looks at <strong>the actual code</strong>: existing slices, <code>ITenantRepository</code> vs <code>ICosmosRepository</code>, DI extensions, test fakes</li>
+      <li>Writes <strong>only the plan</strong> - no feature code - and flags open trade-offs for me to decide</li>
+      <li>The plan is a <strong>file in the KB</strong>, so it outlives the chat</li>
+    </ul>
+    <div class="code-sample" style="margin-top:0;"><pre><span class="c"># docs/kb/plans/F-067-plan.md</span>
+<span class="k">#</span> Implementation Plan: [F-067] User-Configurable
+  Medication Reminder Timing
+<span class="t">Status</span>: Ready for Dev   <span class="t">ADRs</span>: ADR-0018
+
+<span class="k">##</span> 1. Summary &amp; Acceptance Criteria
+<span class="k">##</span> 2. Technical Architecture &amp; Layer Impact
+<span class="k">##</span> 3. Data Contracts &amp; Schema Changes
+<span class="k">##</span> 4. Phased Implementation Steps
+   <span class="m">Phase 1</span> Shared · <span class="m">Phase 2</span> Api
+   <span class="m">Phase 3</span> Client · <span class="m">Phase 4</span> Tests
+   <span class="c">- [ ] Task 1.1 ...   (checkboxes)</span>
+<span class="k">##</span> 5. Verification &amp; Clean Commit Gate</pre></div>
+  </div>
+  <div class="callout warn" style="margin-top:0.5em;">
+    My job: <strong>review the plan, answer the open decisions</strong>, then hand it on - <code>/implement-feature F-067-plan</code>. Cheapest place to fix a wrong assumption.
+  </div>
+  <aside class="notes">New step in the loop: planning is its own custom skill. It reads the same sources as implement-feature (index, WBS, traceability, ADRs) plus FEATURE_PRIORITIES, and - the important part - it inspects the real codebase for extension points before writing anything, so the plan names real files (e.g. the F-067 plan lists NotificationPreferences.cs, LowStockNotificationWorker.cs, Settings.razor and the test classes). F-067 is a real plan in the repo under docs/kb/plans, built on ADR-0018 from the grilling step. The plan template has five sections; the phased tasks are checkboxes that implement-feature ticks off. For features too large for one session, to-spec / to-tickets can push work into the issue tracker as tracer-bullet tickets - both are explicit-only skills restricted to the gh CLI.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 14: Step 3 implement-feature -->
+<!-- ============================================================ -->
+<section>
+  <h2><span class="step-badge">3</span>Implement - <code>implement-feature</code> <span class="tag warn">custom</span></h2>
+  <div class="pipeline">
+    <div class="pipeline-step">1 Load plan<br/><span style="color:var(--subtle)">or KB + WBS</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step">2 Design<br/><span style="color:var(--subtle)">rules check</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step warn">3 Code<br/><span style="color:var(--subtle)">Shared › Api › Client</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step">4 Tests<br/><span style="color:var(--subtle)">xUnit</span></div>
+    <span class="pipeline-arrow">›</span>
+    <div class="pipeline-step good">5 Verify<br/><span style="color:var(--subtle)">build · format · test</span></div>
+  </div>
+  <ul style="font-size:0.86em;">
+    <li><strong>Input:</strong> <code>/implement-feature F-067-plan</code> (or just <code>F-067</code> - it picks up <code>docs/kb/plans/F-067-plan.md</code> if it exists, otherwise falls back to the KB + WBS spec)</li>
+    <li><strong>Design:</strong> immutable record DTOs, <code>ITenantRepository</code> tenant scoping, structured logging, <code>CancellationToken</code> everywhere</li>
+    <li><strong>Code:</strong> follows the plan's phases in order - Shared → Api → Client - and <strong>ticks off <code>[x]</code> tasks</strong> as each phase finishes</li>
+    <li><strong>Tests:</strong> normal + boundary cases, controller status codes, <strong>cross-user isolation</strong>, worker scheduling tests</li>
+    <li><strong>Verify:</strong> <code>dotnet build</code> (0 warnings) → <code>dotnet format</code> → <code>dotnet test</code>; feature <code>Completed</code> in the KB index and <code>FEATURE_PRIORITIES.md</code>; plan fully checked</li>
+  </ul>
+  <div class="callout" style="margin-top:0.5em;">
+    The skill <strong>links</strong> to the rules files instead of copying them - one place to update, no drift.
+  </div>
+  <div class="callout purple" style="margin-top:0.3em;">
+    The plan is a living checklist - progress is visible in the file, and a new session can resume from it.
+  </div>
+  <aside class="notes">The key change in this step: implement-feature no longer re-derives requirements from scratch when a plan exists - the approved plan is the blueprint, and the skill only falls back to discovering the spec from the KB and WBS when there is no plan. It executes the plan's phased checklist and ticks tasks as it goes, which makes progress visible and interruptions cheap. The skill links to dotnet-development.md and testing.md via relative links, so rules stay in one file. Stage 5 also updates docs/kb/features/index.md and FEATURE_PRIORITIES.md - the spec registry is kept honest by the same workflow that writes the code.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15: Step 4 review-changes -->
+<!-- ============================================================ -->
+<section>
+  <h2><span class="step-badge">4</span>Review - <code>review-changes</code> <span class="tag warn">custom</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>What it does</h3>
+      <ol style="font-size:0.82em;">
+        <li><code>git status</code> + staged/unstaged diff + untracked files</li>
+        <li>Runs <strong>one script</strong>: <code>verify-gate.ps1</code> → build (0 warnings), <code>dotnet format</code>, <code>dotnet test</code> → short summary</li>
+        <li>Reads <code>references/review-checklist.md</code>: C#, Cosmos, Blazor lifecycle &amp; leaks, MudBlazor, tests</li>
+        <li>Reads <code>references/code-smells.md</code> (Fowler baseline) and, if there's an originating issue/spec, checks for <strong>missing requirements and scope creep</strong></li>
+        <li>Structured report</li>
+      </ol>
+    </div>
+    <div class="code-sample" style="margin-top:0;"><pre><span class="k">## Code Review Report</span>
+<span class="t">Build</span>: Passed  <span class="t">Tests</span>: N/N passed
+
+<span class="k">#### 🚨 Blockers</span>
+- <span class="m">File:Line</span> - violates AGENTS.md §3.1
+<span class="k">#### ⚠️ Recommendations</span>
+- <span class="m">File:Line</span> - use collection expr.
+<span class="k">#### ✅ Compliant Highlights</span>
+- clean disposal, <span class="m">@key</span> on lists
+
+<span class="k">Verdict</span>: <span class="s">CHANGES REQUESTED</span></pre></div>
+  </div>
+  <div class="callout purple" style="margin-top:0.5em;">
+    One review skill, two lenses: <strong>Standards</strong> (checklist + smells) and <strong>Spec</strong> (does it do what the issue asked?).
+  </div>
+  <aside class="notes">The sample report is a format illustration, not real output. review-changes is the single review skill: it is tied to AGENTS.md and covers two lenses - standards (checklist plus the Fowler smell baseline) and spec (only when an originating issue or spec exists). The checklist and the smells live in references/ so they are read only when a review actually runs, and the build/format/test step is a script that returns a short summary. For F-067 this is exactly what runs after implementation: the plan's acceptance criteria are the spec lens, AGENTS.md and the rules are the standards lens.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 16: Step 5 commit message -->
+<!-- ============================================================ -->
+<section>
+  <h2><span class="step-badge">5</span>Commit - <code>generate-commit-message</code> <span class="tag warn">custom</span></h2>
+  <ul style="font-size:0.88em;">
+    <li>Reads staged + unstaged changes, prefers the <strong>staged</strong> set if both exist</li>
+    <li><strong>Conventional Commits</strong>: <code>type(scope): imperative subject</code> + bullet body + footers</li>
+    <li>Gives a copy-paste command - <strong>I</strong> run the commit myself</li>
+    <li>Explicit-only (<code>disable-model-invocation</code>) and read-only: <code>allowed-tools</code> = <code>git status</code>, <code>git diff</code>, <code>Read</code></li>
+  </ul>
+  <div class="code-sample"><pre><span class="c">// illustrative - the kind of message the skill produces for F-067</span>
+<span class="k">feat(F-067)</span>: add user-configurable daily low-stock reminder time
+
+- Add DailyReminderTime to NotificationPreferences and DTOs (HH:mm, 15-min steps, default 10:00)
+- Switch LowStockNotificationWorker to 15-minute aligned ticks in Europe/Kyiv with same-day catch-up
+- Add IsEligibleForDispatch to LowStockDispatcherService to dedupe alerts per calendar day
+- Add MudTimePicker to Settings for choosing the reminder time
+- Record ADR-0018 and mark F-067 completed in the feature registry</pre></div>
+  <div class="callout" style="margin-top:0.5em;">
+    Note the last bullet: the <strong>docs travel with the code</strong>. The real message for F-067 is generated live in the demo.
+  </div>
+  <aside class="notes">Small skill, big consistency win: git log reads like a changelog. The feature ID in the scope (F-067) links every commit back to the KB spec and the plan. This message is an illustration written from the F-067 plan - F-067 isn't implemented yet, so the real one comes out of the demo. Because the grill step already produced ADR-0018 and the implement step updates the feature registry, those doc changes are part of the same diff and the message describes them.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 17: Real trail -->
+<!-- ============================================================ -->
+<section>
+  <h2>Running Example: F-067 Reminder Timing</h2>
+  <table class="routing-table">
+    <tr><th style="width:20%">Step</th><th>What is already in the repo</th></tr>
+    <tr><td>Spec</td><td>Feature index + WBS entry: <em>User-Configurable Medication Reminder Timing</em>, Fast-Follow, <code>Ready for Dev</code></td></tr>
+    <tr><td>1 Grill <span class="tag good">done</span></td><td><code>ADR-0018</code>: periodic 15-min ticks with same-day catch-up · Europe/Kyiv anchor · <code>"10:00"</code> default for backward compatibility</td></tr>
+    <tr><td>2 Plan <span class="tag good">done</span></td><td><code>docs/kb/plans/F-067-plan.md</code>: 4 phases, 12 tasks across <code>Shared → Api → Client → Tests</code>, 8 planned tests, real files named (<code>LowStockNotificationWorker.cs</code>, <code>Settings.razor</code> ...)</td></tr>
+    <tr><td>3 Implement</td><td><span class="tag warn">live demo</span> <code>/implement-feature F-067-plan</code></td></tr>
+    <tr><td>4 Review</td><td><span class="tag warn">live demo</span> <code>/review-changes</code></td></tr>
+    <tr><td>5 Commit</td><td><span class="tag warn">live demo</span> <code>/generate-commit-message</code></td></tr>
+  </table>
+  <div class="callout good" style="margin-top:0.6em;">
+    By the time code is written, the <strong>decisions are made</strong> (ADR), the <strong>files are named</strong> (plan) and the <strong>tests are listed</strong> - implementation is execution, not discovery.
+  </div>
+  <div class="slide-note" style="margin-top:0.4em;">Why the review matters - earlier feature F-066: a review found three spec gaps (including an SSRF check) and two standards issues before they shipped.</div>
+  <aside class="notes">F-067 is a live example: the grilling and planning artifacts already exist in the repo (ADR-0018 and docs/kb/plans/F-067-plan.md), and the remaining three steps are what we run in the demo. Counts come from the plan file: Phase 1 two tasks, Phase 2 four, Phase 3 three, Phase 4 three = 12 tasks; planned tests are four eligibility tests, three controller tests and one worker tick-timing test. The F-066 line is the one piece of evidence from an earlier, already-shipped feature: a follow-up commit (0125051) fixed two standards issues ([Parameter] mutation in a dialog, duplicated URL validation) and three spec gaps (a missing price-range badge, a missing price-region endpoint, and an SSRF DNS check) - all found by a review before they shipped. Good moment to say: the agent that wrote the code did not mark its own homework.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- DEMO -->
+<!-- ============================================================ -->
+<section data-background-color="#12100a" style="text-align:center;">
+  <div class="demo-label">Live Demo</div>
+  <h1 class="demo-title">Antigravity + BioMetric</h1>
+  <div style="color:var(--subtle); font-size:0.75em; margin-bottom:0.6em;">Feature: <strong style="color:white;">F-067</strong> - user-configurable low-stock reminder time</div>
+  <ol class="demo-steps">
+    <li><strong>Grill</strong> <span style="color:var(--good)">(pre-baked)</span> - show <code>ADR-0018</code> that came out of <code>/grilling</code></li>
+    <li><strong>Plan</strong> <span style="color:var(--good)">(pre-baked)</span> - open <code>docs/kb/plans/F-067-plan.md</code>, the output of <code>/plan-feature F-067</code></li>
+    <li><strong>Implement</strong> - <code>/implement-feature F-067-plan</code>; watch tasks get ticked off and the build/test gate run</li>
+    <li><strong>Review</strong> - <code>/review-changes</code>; watch <code>verify-gate.ps1</code> run, read the blockers and the verdict</li>
+    <li><strong>Commit</strong> - <code>/generate-commit-message</code>; copy the command and commit</li>
+  </ol>
+  <aside class="notes">F-067 is Ready for Dev with its ADR-0018 and plan already in the repo, so the demo starts at implement - grilling and planning are shown as artifacts. If you want to show them live instead, run /grilling on a variation (e.g. per-medication reminder times) or delete the plan file and run /plan-feature F-067 again. Commit or stash the ADR/plan/KB changes first so review-changes and generate-commit-message only see the implementation diff. Fallback if the model is slow: walk through the plan file task by task and show the planned test names.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 19: Start small -->
+<!-- ============================================================ -->
+<section>
+  <h2>How to Start on Your Own Project</h2>
+  <ol style="font-size:0.95em;">
+    <li>Write a short <code>AGENTS.md</code>: stack, build/test commands, 5-10 rules the agent keeps breaking</li>
+    <li>Add a <code>CONTEXT.md</code> glossary the first time you catch the agent using the wrong word</li>
+    <li>Record an ADR only for decisions that are hard to reverse and surprising</li>
+    <li>Turn your most repeated multi-step prompt into a <code>SKILL.md</code></li>
+    <li>Add an allowlist for the safe commands so you stop clicking "approve"</li>
+    <li>Run the loop: <strong>grill → plan → implement → review → commit</strong> - and fix the setup when it hurts</li>
+  </ol>
+  <div class="callout" style="margin-top:0.8em;">
+    Everything shown today lives in <code>C:\projects\biometric</code> - happy to share the skills and rules as a starting point.
+  </div>
+  <aside class="notes">Offer to share the four custom skills and the two rules files as a template. Encourage the team to contribute their own skills to the shared knowledge base repo.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 20: Q&A -->
+<!-- ============================================================ -->
+<section style="text-align:center; padding-top:1.5em;">
+  <div style="font-size:0.8em; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5em;">Over to you</div>
+  <h1 style="font-size:2em;">Questions &amp;<br/>Discussion</h1>
+  <p style="color:var(--subtle); margin-top:1.5em; font-size:0.85em;">
+    Which repeated task on your team deserves a skill first?<br/>
+    What rule does your agent keep breaking?<br/>
+    Should we share a common skills / rules repo?
+  </p>
+  <p style="color:var(--subtle); margin-top:1.8em; font-size:0.7em;">
+    ivan.sukhetskyi@eleks.com
+  </p>
+  <aside class="notes">Seed questions if quiet. Capture one concrete follow-up: e.g., "pilot a shared AGENTS.md template on project X".</aside>
+</section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    width: 1100,
+    height: 760,
+    margin: 0.05,
+    center: false,
+    keyboard: {
+      39: 'next',
+      37: 'prev',
+    },
+    plugins: [ RevealNotes ]
+  });
+</script>
+</body>
+</html>
